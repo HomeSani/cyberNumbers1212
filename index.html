@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>2048</title>
+
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
+  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x920.png"
+    media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
+  <!-- iPhone, retina -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport"
+    content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Кибер числа</h1>
+      <div class="scores-container">
+        <div class="score-container" style="font-size: 20px; background: #4d004f">0</div>
+        <div class="best-container" style="font-size: 20px; background: #4d004f">0</div>
+      </div>
+    </div>
+
+    <div class="above-game">
+      <p class="game-intro">Соеденяй числы и получи <strong>2048</strong></p>
+      <a class="restart-button" style="background: #4d004f">Заново</a>
+    </div>
+
+    <div class="game-container" style="background-color: #08173d">
+      <div class="game-message" style="background: rgba(11, 0, 27, 0.55556)">
+        <p></p>
+        <div class="lower">
+          <a class="keep-playing-button">Ходы кончаются</a>
+          <a class="retry-button" style="background: #4d004f">Попробуй ещё</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+
+      <div class="tile-container">
+
+      </div>
+    </div>
+
+    <p class="game-explanation" style="text-align: center;">
+      <button style="
+      background: #4d004f;
+      border-radius: 6px;
+      padding: 10px 20px;
+      border:none;
+      font-size: 20px;
+      color: #f9f6f2;
+      text-align: center" onclick="friends()">Пригласить друга</button>
+    </p>
+  </div>
+
+  <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+
+  <script>
+    vkBridge.send('VKWebAppInit');
+
+    function friends() {
+      vkBridge.send("VKWebAppShowInviteBox", {})
+         .then(data => console.log(data.success))  
+        .catch(error => console.log(error));
+      
+        console.log("friend")
+    }
+
+    setInterval(() => {
+      console.log("ADS");
+
+      vkBridge.send("VKWebAppShowNativeAds", { ad_format: "interstitial" })
+        .then(data => console.log(data.result))
+        .catch(error => console.log(error));
+    }, 180000);
+  </script>
+
+  <script src="js/bind_polyfill.js"></script>
+  <script src="js/classlist_polyfill.js"></script>
+  <script src="js/animframe_polyfill.js"></script>
+  <script src="js/keyboard_input_manager.js"></script>
+  <script src="js/html_actuator.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/tile.js"></script>
+  <script src="js/local_storage_manager.js"></script>
+  <script src="js/game_manager.js"></script>
+  <script src="js/application.js"></script>
+</body>
+
+</html>
