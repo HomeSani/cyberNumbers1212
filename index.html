@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <p class="game-explanation" style="text-align: center;">
+    <p class="game-explanation" style="text-align: center; display: flex; align-items: center; justify-content: space-between;">
       <button style="
       background: #4d004f;
       border-radius: 6px;
@@ -87,6 +87,14 @@
       font-size: 20px;
       color: #f9f6f2;
       text-align: center" onclick="friends()">Пригласить друга</button>
+      <button style="
+      background: #4d004f;
+      border-radius: 6px;
+      padding: 10px 20px;
+      border:none;
+      font-size: 20px;
+      color: #f9f6f2;
+      text-align: center" onclick="joinInCommunity()">Сообщество VK</button>
     </p>
   </div>
 
@@ -101,6 +109,10 @@
         .catch(error => console.log(error));
       
         console.log("friend")
+    }
+
+    function joinInCommunity() {
+      vkBridge.send("VKWebAppJoinGroup", {"group_id": 184207529});
     }
 
     setInterval(() => {
